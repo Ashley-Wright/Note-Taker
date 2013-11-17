@@ -2,7 +2,7 @@
   nav.top-bar
     ul.title-area
       li.name
-        h1: a(href="/") Note Taker
+        h1: a(href="/") Home
       li.toggle-topbar.menu-icon
         a(href="#")
           span Menu
@@ -11,10 +11,7 @@
       ul.left
       ul.right
         li.divider
-        li.has-form: a#sign-in-button.button.radius(href="#", data-email = 'guest') Sign In
-
-
-        //- if(user)
-        //-   li.has-form: a#authentication-button.button.radius.alert(href="#", data-email = 'user.email')= user.email
-        //- else
-        //-   li.has-form: a#authentication-button.button.radius(href="#", data-email = 'guest') Login | Sign Up
+        if(user)
+          li.has-form: a#sign-in-button.button.radius.alert(href="#", data-name = 'user.name')= user.name
+        else
+          li.has-form: a#sign-in-button.button.radius(href="#", data-name = 'guest') Sign In

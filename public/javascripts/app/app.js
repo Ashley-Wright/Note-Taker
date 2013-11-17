@@ -9,7 +9,7 @@ function initialize(){
   initializeSocketIO();
   $('#sign-in-button').on('click', clickSignIn);
   $('#register').on('click', clickRegister);
-
+  $('#login').on('click', clickLogin);
 }
 
 // =============== Events ================= //
@@ -17,8 +17,17 @@ function initialize(){
 // ======================================== //
 
 function clickSignIn(e){
-  $('#sign-in-form').toggleClass('hidden');
-  $('input[name="name"]').focus();
+  if($('#sign-in-button').attr('data-name') === 'guest'){
+    $('#sign-in-form').toggleClass('hidden');
+    $('input[name="name"]').focus();
+  } else {
+    url = '/logout';
+    data = {};
+    sendAjaxRequest(url, data, 'POST', 'DELETE', null, function(data){
+      console.log(data);
+      htmlLogoutCompleted(data);
+    });
+  }
   e.preventDefault();
 }
 
@@ -30,6 +39,17 @@ function clickRegister(e){
     htmlRegisterCompleted(data);
   });
 }
+
+function clickLogin(e){
+  var url = '/login';
+  var data = $('form#sign-in-form').serialize();
+  sendAjaxRequest(url, data, 'POST', 'PUT', e, function(data){
+    console.log(data);
+    htmlLoginCompleted(data);
+  });
+}
+
+
 
 // ========================================= //
 // ================ HTML =================== //
@@ -47,6 +67,29 @@ function htmlRegisterCompleted(result){
   }
 }
 
+function htmlLoginCompleted(result){
+  if(result.status === 'error'){
+    $('input[name="name"]').val('');
+    $('input[name="password"]').val('');
+    $('input[name="name"]').focus();
+  }
+  if(result.status === 'ok'){
+    $('form#sign-in-form').toggleClass('hidden');
+    $('#sign-in-button').attr('data-name', result.name);
+    $('#sign-in-button').text(result.name);
+    $('#sign-in-button').addClass('alert');
+    // $('#the-application').removeClass('hidden');
+  }
+}
+
+function htmlLogoutCompleted(result){
+  if(result.status === 'ok'){
+    $('#sign-in-button').attr('data-name', 'guest');
+    $('#sign-in-button').text('Sign In');
+    $('#sign-in-button').removeClass('alert');
+    // $('#the-application').addClass('hidden');
+  }
+}
 
 
 
