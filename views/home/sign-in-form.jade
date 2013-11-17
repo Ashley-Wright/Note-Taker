@@ -1,0 +1,8 @@
+form#sign-in-form.hidden(action='/', method='post')
+  fieldset
+    .row
+      mixin field(6, 'text', 'name', 'Name')
+      mixin field(6, 'password', 'password', 'Password')
+    .row
+      .small-3.small-offset-6.columns: button#register.radius.success.small.expand Register
+      .small-3.columns: button#login.radius.success.small.expand Login
