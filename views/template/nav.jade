@@ -9,6 +9,10 @@
 
     section.top-bar-section
       ul.left
+        if(user)
+          li: a#add-resource-nav Add Resource
+        else
+          li: a.disabled-link#add-resource-nav Add Resource
       ul.right
         li.divider
         if(user)

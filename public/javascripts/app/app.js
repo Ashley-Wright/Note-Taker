@@ -10,6 +10,8 @@ function initialize(){
   $('#sign-in-button').on('click', clickSignIn);
   $('#register').on('click', clickRegister);
   $('#login').on('click', clickLogin);
+  $('#add-resource-nav').on('click', clickNavAddResource);
+  $('#add-resource-button').on('click', clickAddResource);
 }
 
 // =============== Events ================= //
@@ -49,6 +51,23 @@ function clickLogin(e){
   });
 }
 
+function clickNavAddResource(e){
+  if($(this).hasClass('disabled-link')){
+    e.preventDefault();
+  } else {
+    $('#resource-form').toggleClass('hidden');
+    $('#resource-form input[name="title"]').focus();
+  }
+}
+
+function clickAddResource(e){
+  var url = '/resources';
+  var data = $('form#resource-form').serialize();
+  sendAjaxRequest(url, data, 'POST', null, e, function(data){
+    console.log(data);
+    htmlAddResourceCompleted(data);
+  });
+}
 
 
 // ========================================= //
@@ -78,7 +97,8 @@ function htmlLoginCompleted(result){
     $('#sign-in-button').attr('data-name', result.name);
     $('#sign-in-button').text(result.name);
     $('#sign-in-button').addClass('alert');
-    // $('#the-application').removeClass('hidden');
+    $('#add-resource-nav').removeClass('disabled-link');
+    window.location.href = '/';
   }
 }
 
@@ -87,10 +107,15 @@ function htmlLogoutCompleted(result){
     $('#sign-in-button').attr('data-name', 'guest');
     $('#sign-in-button').text('Sign In');
     $('#sign-in-button').removeClass('alert');
-    // $('#the-application').addClass('hidden');
+    $('#add-resource-nav').addClass('disabled-link')
+    window.location.href = '/';
   }
 }
 
+function htmlAddResourceCompleted(result){
+  $('form#resource-form').addClass('hidden');
+  window.location.href = '/';
+}
 
 
 function initializeSocketIO(){

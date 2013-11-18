@@ -4,9 +4,13 @@
 include head
 body
   include header
-  .row
+  .row.navigation-area
     .small-12.columns
       include nav
-  block content
+  .row
+    .small-3.columns
+      include side-nav
+    .small-9.columns
+      block content
   include scripts
 </html>
