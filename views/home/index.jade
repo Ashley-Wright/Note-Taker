@@ -8,4 +8,6 @@ block content
       include resource-form
     .small-6.columns
       include sign-in-form
-
+  .row#note-board(class = user ? '' : 'hidden')
+    .small-12.columns
+      include resource-show

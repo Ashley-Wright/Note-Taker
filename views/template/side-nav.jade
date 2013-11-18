@@ -1,3 +1,11 @@
 ul.side-nav
   each resource in resources
-    li: a= resource.title
+    if(currentResource)
+      if(resource.title === currentResource.title)
+        li.active: a(data-id= resource.id)= resource.title
+      else
+        li: a(data-id= resource.id)= resource.title
+    else
+      li: a(data-id= resource.id)= resource.title
+
+

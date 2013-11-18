@@ -7,3 +7,12 @@ exports.create = function(req,res){
     res.send(resource);
   });
 };
+
+exports.show = function(req,res){
+  req.session.currentResource = {};
+  Resource.findById(req.params.id, function(err, resource){
+    req.session.currentResource = resource;
+    // console.log(req.session.currentResource);
+    res.send(resource);
+  });
+};

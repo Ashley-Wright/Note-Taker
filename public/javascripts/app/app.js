@@ -12,6 +12,7 @@ function initialize(){
   $('#login').on('click', clickLogin);
   $('#add-resource-nav').on('click', clickNavAddResource);
   $('#add-resource-button').on('click', clickAddResource);
+  $('.side-nav').on('click', 'a', clickNavResource);
 }
 
 // =============== Events ================= //
@@ -69,6 +70,19 @@ function clickAddResource(e){
   });
 }
 
+function clickNavResource(e){
+  $('.active').removeClass('active');
+  $(this).parent().addClass('active');
+
+  var id = $(this).attr('data-id');
+  var url = '/resources/' + id;
+
+  sendAjaxRequest(url, {}, 'GET', null, e, function(data){
+    console.log(data);
+    htmlShowResource(data);
+  });
+}
+
 
 // ========================================= //
 // ================ HTML =================== //
@@ -115,6 +129,12 @@ function htmlLogoutCompleted(result){
 function htmlAddResourceCompleted(result){
   $('form#resource-form').addClass('hidden');
   window.location.href = '/';
+}
+
+function htmlShowResource(result){
+  $('#resource-show').removeClass('hidden');
+  $('#resource-show-notes').empty();
+  $('#resource-show h2').text(result.title);
 }
 
 
