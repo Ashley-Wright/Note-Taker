@@ -7,12 +7,17 @@ var socket;
 function initialize(){
   $(document).foundation();
   initializeSocketIO();
+
   $('#sign-in-button').on('click', clickSignIn);
   $('#register').on('click', clickRegister);
   $('#login').on('click', clickLogin);
+
   $('#add-resource-nav').on('click', clickNavAddResource);
   $('#add-resource-button').on('click', clickAddResource);
   $('.side-nav').on('click', 'a', clickNavResource);
+
+  $('#add-note-button').on('click', clickAddNote);
+  $('#save-note-button').on('click', clickSaveNote);
 }
 
 // =============== Events ================= //
@@ -83,6 +88,19 @@ function clickNavResource(e){
   });
 }
 
+function clickAddNote(){
+  $('#note-form').toggleClass('hidden');
+}
+
+function clickSaveNote(e){
+  $('#note-form').addClass('hidden');
+
+  var url = '/notes';
+  var data = $('#add-note-form').serialize();
+  sendAjaxRequest(url, data, 'POST', null, e, function(data){
+    console.log(data);
+  });
+}
 
 // ========================================= //
 // ================ HTML =================== //

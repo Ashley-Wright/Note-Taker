@@ -11,6 +11,7 @@ var middleware = require('./lib/middleware');
 var home = require('./routes/home');
 var users = require('./routes/users');
 var resources = require('./routes/resources');
+var notes = require('./routes/notes');
 
 var app = express();
 var RedisStore = require('connect-redis')(express);
@@ -21,11 +22,15 @@ require('./config').initialize(app, RedisStore);
 
 // routes
 app.get('/', middleware.getResources, home.index);
+
 app.post('/users', users.create);
 app.put('/login', users.login);
 app.delete('/logout', users.logout);
+
 app.post('/resources', resources.create);
 app.get('/resources/:id', resources.show);
+
+app.post('/notes', notes.create);
 
 // start server & socket.io
 var common = require('./sockets/common');
