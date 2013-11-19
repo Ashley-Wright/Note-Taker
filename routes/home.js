@@ -4,5 +4,8 @@ exports.index = function(req, res){
   } else {
     res.locals.currentResource = null;
   }
-  res.render('home/index', {title: 'Express', user: res.locals.user, resources: res.locals.resources, currentResource: res.locals.currentResource});
+  console.log('home index')
+  console.log(req.session.notes);
+  res.render('home/index', {title: 'Express', user: res.locals.user, resources: res.locals.resources, currentResource: res.locals.currentResource, notes: req.session.notes});
 };
+

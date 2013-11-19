@@ -21,6 +21,7 @@ exports.initialize = function(app, RedisStore){
   }));
 
   app.use(middleware.findUser);
+  // app.use(middleware.findResource);
   app.use(app.router);
 
   if ('development' === app.get('env')) {

@@ -150,9 +150,10 @@ function htmlAddResourceCompleted(result){
 }
 
 function htmlShowResource(result){
-  $('#resource-show').removeClass('hidden');
+  // $('#resource-show').removeClass('hidden');
   $('#resource-show-notes').empty();
-  $('#resource-show h2').text(result.title);
+  $('#resource-show h2').text(result.resource.title);
+  window.location.href = '/';
 }
 
 
