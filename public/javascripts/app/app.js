@@ -84,6 +84,7 @@ function clickNavResource(e){
   var id = $(this).attr('data-id');
   if(!id){
     $('#resource-show').addClass('hidden');
+    $('#search-show').removeClass('hidden');
   } else {
     var url = '/resources/' + id;
     sendAjaxRequest(url, {}, 'GET', null, e, function(data){
@@ -108,9 +109,12 @@ function clickSaveNote(e){
 }
 
 function clickSearch(){
-  var url = '/notes?search=cool';
+  search = $('#search-show input[name="search"]').val();
+  var url = '/notes?search=' + search;
   sendAjaxRequest(url, {}, 'GET', null, null, function(data){
     console.log(data);
+    debugger;
+    // htmlShowSearchResults(data.results);
   });
 }
 
@@ -168,6 +172,10 @@ function htmlShowResource(result){
   $('#resource-show h2').text(result.resource.title);
   window.location.href = '/';
 }
+
+// function htmlShowSearchResults(result){
+
+// }
 
 
 function initializeSocketIO(){

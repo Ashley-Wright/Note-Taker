@@ -12,13 +12,9 @@ exports.create = function(req,res){
 
 exports.search = function(req,res){
   var search = req.query.search;
-  console.log('---search---');
-  console.log(search);
+  req.session.searchResults = {};
   Note.textSearch(search, function(err, output){
-    console.log('---results---');
-    console.log(err);
-    console.log(output);
-    console.log(output.results);
-    res.send({});
+    req.session.searchResults = output.results;
+    res.send(output.results);
   });
 }

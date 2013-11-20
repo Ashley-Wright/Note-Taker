@@ -1,5 +1,25 @@
-#search-show
+#search-show.hidden
   .row
     .small-12.columns
+      mixin field(6, 'text', 'search', null)
       button#search-button.button.small Search
+  .row
+    .small-12.columns
+      if(searchResults)
+        - for(var i=0; i<searchResults.length; i++)
+          .notes
+            h5= searchResults[i].obj.title
+            p= searchResults[i].obj.content
+
+
+        //- each result in searchResults
+        //-   h4= searchResults[0].obj.title
+        //-   p= searchResults[0].obj.content
+
+
+
+
+        //- - for(var i=0; i < searchResults.length; i++)
+        //-   h5= searchResults.results[i].obj.title
+
 
