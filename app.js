@@ -31,6 +31,7 @@ app.post('/resources', resources.create);
 app.get('/resources/:id', resources.show);
 
 app.post('/notes', notes.create);
+app.get('/notes', notes.search);
 
 // start server & socket.io
 var common = require('./sockets/common');

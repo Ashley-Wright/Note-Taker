@@ -18,6 +18,8 @@ function initialize(){
 
   $('#add-note-button').on('click', clickAddNote);
   $('#save-note-button').on('click', clickSaveNote);
+
+  $('#search-button').on('click', clickSearch);
 }
 
 // =============== Events ================= //
@@ -80,12 +82,15 @@ function clickNavResource(e){
   $(this).parent().addClass('active');
 
   var id = $(this).attr('data-id');
-  var url = '/resources/' + id;
-
-  sendAjaxRequest(url, {}, 'GET', null, e, function(data){
-    console.log(data);
-    htmlShowResource(data);
-  });
+  if(!id){
+    $('#resource-show').addClass('hidden');
+  } else {
+    var url = '/resources/' + id;
+    sendAjaxRequest(url, {}, 'GET', null, e, function(data){
+      console.log(data);
+      htmlShowResource(data);
+    });
+  }
 }
 
 function clickAddNote(){
@@ -98,6 +103,13 @@ function clickSaveNote(e){
   var url = '/notes';
   var data = $('#add-note-form').serialize();
   sendAjaxRequest(url, data, 'POST', null, e, function(data){
+    console.log(data);
+  });
+}
+
+function clickSearch(){
+  var url = '/notes?search=cool';
+  sendAjaxRequest(url, {}, 'GET', null, null, function(data){
     console.log(data);
   });
 }
@@ -152,6 +164,7 @@ function htmlAddResourceCompleted(result){
 function htmlShowResource(result){
   // $('#resource-show').removeClass('hidden');
   $('#resource-show-notes').empty();
+  console.log(result);
   $('#resource-show h2').text(result.resource.title);
   window.location.href = '/';
 }
