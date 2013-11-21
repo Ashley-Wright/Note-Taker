@@ -16,10 +16,12 @@
   .row#resource-show-notes
     .small-12.columns
       if(notes)
-        each note in notes
-          .notes
-            h5= note.title
-            p= note.content
+        ul#note-list
+          each note in notes
+            li
+              .notes
+                h5= note.title
+                p= note.content
 
 
 

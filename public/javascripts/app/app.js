@@ -20,6 +20,9 @@ function initialize(){
   $('#save-note-button').on('click', clickSaveNote);
 
   $('#search-button').on('click', clickSearch);
+
+  $('#note-list').sortable().disableSelection();
+
 }
 
 // =============== Events ================= //
@@ -113,7 +116,6 @@ function clickSearch(){
   var url = '/notes?search=' + search;
   sendAjaxRequest(url, {}, 'GET', null, null, function(data){
     console.log(data);
-    debugger;
     // htmlShowSearchResults(data.results);
   });
 }
