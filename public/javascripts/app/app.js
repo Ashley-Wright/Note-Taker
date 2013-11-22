@@ -20,9 +20,9 @@ function initialize(){
   $('#save-note-button').on('click', clickSaveNote);
 
   $('#search-button').on('click', clickSearch);
+  $('#merge-button').on('click', clickMerge);
 
-  $('#note-list').sortable().disableSelection();
-
+  $('#note-list').sortable({update: sortResourceNotes}).disableSelection();
 }
 
 // =============== Events ================= //
@@ -118,6 +118,32 @@ function clickSearch(){
     console.log(data);
     // htmlShowSearchResults(data.results);
   });
+}
+
+function sortResourceNotes(){
+  var sortedNotes = [];
+  var notes = $(this).children();
+  for(i=0; i < notes.length; i++){
+    sortedNotes.push($(notes[i]).data('id'));
+  }
+
+  var url = '/resourceNotes/sort';
+  var data = {sortedNotes: sortedNotes};
+  console.log(data);
+  sendAjaxRequest(url, data, 'GET', null, null, function(data){
+    console.log(data);
+  });
+}
+
+function clickMerge(){
+  $('#show-search-notes').addClass('hidden');
+  var $merge = $('<div>');
+  var notes = $('#show-search-notes').children().children();
+
+  for(var i = 0; i < notes.length; i++){
+    $merge.append($(notes[i]).children());
+  }
+  $('#search-show').append($merge);
 }
 
 // ========================================= //

@@ -4,6 +4,11 @@
       mixin field(6, 'text', 'search', null)
       button#search-button.button.small Search
   .row
+    .small-6.columns
+      button#merge-button.button.small Merge
+    .small-6.columns
+      button#pdf-button.button.small PDF
+  .row#show-search-notes
     .small-12.columns
       if(searchResults)
         - for(var i=0; i<searchResults.length; i++)

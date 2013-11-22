@@ -18,7 +18,7 @@
       if(notes)
         ul#note-list
           each note in notes
-            li
+            li(data-id= note._id)
               .notes
                 h5= note.title
                 p= note.content
