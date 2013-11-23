@@ -1,5 +1,6 @@
 /* global document, window, io */
 
+
 $(document).ready(initialize);
 
 var socket;
@@ -21,6 +22,7 @@ function initialize(){
 
   $('#search-button').on('click', clickSearch);
   $('#merge-button').on('click', clickMerge);
+  $('#pdf-button').on('click', clickPDF);
 
   $('#note-list').sortable({update: sortResourceNotes}).disableSelection();
 }
@@ -129,8 +131,7 @@ function sortResourceNotes(){
 
   var url = '/resourceNotes/sort';
   var data = {sortedNotes: sortedNotes};
-  console.log(data);
-  sendAjaxRequest(url, data, 'GET', null, null, function(data){
+  sendAjaxRequest(url, data, 'POST', 'PUT', null, function(data){
     console.log(data);
   });
 }
@@ -144,6 +145,16 @@ function clickMerge(){
     $merge.append($(notes[i]).children());
   }
   $('#search-show').append($merge);
+}
+
+function clickPDF(){
+  var url = '/searchNotes/pdf';
+  var text = 'note1 title';
+  var data = {text: text};
+  console.log(data);
+  sendAjaxRequest(url, data, 'POST', 'PUT', null, function(data){
+    console.log(data);
+  });
 }
 
 // ========================================= //
