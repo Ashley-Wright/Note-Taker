@@ -1,13 +1,50 @@
 @base: #DFE2DF;
+@primary: #F9F994;
 
 body{
   background-color: @base;
   // background-image: url(http://www.shortstack.com/wp-content/uploads/2012/05/background-image.png);
 }
 
-.header{
-  background-color: #EEEB4F;
-  border-bottom: 2px solid darken(#EEEB4F, 10%);
-  border-top: 2px solid darken(#EEEB4F, 10%);
+.hidden{
+  display: none;
 }
 
+.header{
+  background-color: @primary;
+  border-bottom: 2px solid darken(@primary, 5%);
+  border-top: 2px solid darken(@primary, 5%);
+  h1{
+    color: darken(@base, 60%);
+  }
+}
+
+#sign-in-form, #register-form{
+  margin-top: 40px;
+  border: 2px solid darken(@base, 60%);
+  border-radius: 5px;
+  padding: 10px 15px 10px 10px;
+  background-color: white;
+
+  legend{
+    padding-left: 10px;
+  }
+  fieldset{
+    margin: auto;
+  }
+  button{
+    margin-top: 10px;
+  }
+  p{
+    margin: 10px 0 8px 0;
+  }
+  a{
+    color: #006887;
+    text-decoration: none;
+  }
+  #sign-in-error, #register-error{
+    background-color: red;
+    border-radius: 5px;
+    padding: 4px 0 2px 4px;
+  }
+}
