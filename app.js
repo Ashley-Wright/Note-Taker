@@ -4,33 +4,18 @@ var mongoose = require('mongoose');
 // model definitions
 require('require-dir')('./models');
 
-// define middleware
-var middleware = require('./lib/middleware');
-
 // route definitions
 var home = require('./routes/home');
-var users = require('./routes/users');
-var resources = require('./routes/resources');
-var notes = require('./routes/notes');
 
 var app = express();
 var RedisStore = require('connect-redis')(express);
-mongoose.connect('mongodb://localhost/note-taker');
+mongoose.connect('mongodb://localhost/name-of-database');
 
 // configure express
 require('./config').initialize(app, RedisStore);
 
 // routes
-app.get('/', middleware.getResources, home.index);
-
-app.post('/users', users.create);
-app.put('/login', users.login);
-app.delete('/logout', users.logout);
-
-app.post('/resources', resources.create);
-app.get('/resources/:id', resources.show);
-
-app.post('/notes', notes.create);
+app.get('/', home.index);
 
 // start server & socket.io
 var common = require('./sockets/common');

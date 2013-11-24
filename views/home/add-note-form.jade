@@ -1,9 +1,0 @@
-form#add-note-form(action='/', method='post')
-  fieldset
-    .row
-      mixin field(12, 'text', 'title', 'Title')
-    .row
-      label(for='content') Content:
-      textarea(name='content')
-    .row
-      .small-3.small-offset-9.columns: button#save-note-button.radius.success.small.expand Save
