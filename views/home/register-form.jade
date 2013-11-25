@@ -1,0 +1,16 @@
+form.pure-form.pure-form-stacked.hidden#register-form(action='/', method='post')
+  fieldset
+    legend Register
+
+    p#register-error.hidden
+
+    label(for="username") Username:
+    input#register-username(type="text")
+
+    label(for="password") Password:
+    input#register-password1(type="password")
+
+    label(for="password2") Retype Password:
+    input#register-password2(type="password")
+
+    button.pure-button.pure-button-primary(type="submit") Register

@@ -1,5 +1,10 @@
 header
   .pure-g-r.header
     .pure-u-1-12
-    .pure-u-11-12
+    .pure-u-3-4
       h1.subheader Note Taker
+    .pure-u-1-6
+      if(user)
+        a#username(href='#')= user.username
+      else
+        a#username(href='#')

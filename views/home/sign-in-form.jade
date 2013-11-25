@@ -1,0 +1,16 @@
+form.pure-form.pure-form-stacked#sign-in-form(action='/', method='post')
+  fieldset
+    legend Sign-in
+
+    p#sign-in-error.hidden
+
+    label(for="username") Username:
+    input#sign-in-username(type="text")
+
+    label(for="password") Password:
+    input#sign-in-password(type="password")
+
+    button.pure-button.pure-button-primary(type="submit") Sign-in
+
+    p Don't have an account?
+    a#register-link(href='#') Register
