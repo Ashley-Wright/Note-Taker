@@ -1,0 +1,10 @@
+.reveal-modal#add-source(data-reveal)
+  form.pure-form#add-source-form(action='/', method='post')
+    fieldset
+      legend Add a Source
+
+      label(for="title") Title:
+      input#add-source-title(type="text")
+
+      button.pure-button.pure-button-primary(type="submit") Save
+  a.close-reveal-modal &#215;

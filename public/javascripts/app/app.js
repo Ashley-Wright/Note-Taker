@@ -10,6 +10,8 @@ function initialize(){
   $('#register-form button').on('click', clickRegister);
   $('#sign-in-form button').on('click', clickSignIn);
   $('#username').on('click', clickSignOut);
+
+  $('#add-source-form').on('click', clickAddSource);
 }
 
 // =============== Events ================= //
@@ -77,6 +79,23 @@ function clickSignOut(e){
   });
 }
 
+function clickAddSource(e){
+  var title = $('#add-source-title').val();
+  var url = '/sources';
+
+  if(!title){
+    e.preventDefault();
+  } else {
+    $('#add-source').foundation('reveal', 'close');
+    sendAjaxRequest(url, {title: title}, 'POST', null, e, function(data){
+      console.log(data);
+      htmlAddSourceCompleted(data);
+    });
+  }
+}
+
+
+
 // ========================================= //
 // ================ HTML =================== //
 // ========================================= //
@@ -121,4 +140,8 @@ function htmlLogoutCompleted(result){
     $('#username').text('');
     $('.welcome').removeClass('hidden');
   }
+}
+
+function htmlAddSourceCompleted(result){
+
 }
