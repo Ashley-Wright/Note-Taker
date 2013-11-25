@@ -9,7 +9,7 @@ function initialize(){
   $('#register-link').on('click', clickRegisterLink);
   $('#register-form button').on('click', clickRegister);
   $('#sign-in-form button').on('click', clickSignIn);
-
+  $('#username').on('click', clickSignOut);
 }
 
 // =============== Events ================= //
@@ -69,6 +69,13 @@ function clickSignIn(e){
   });
 }
 
+function clickSignOut(e){
+  var url = '/logout';
+  sendAjaxRequest(url, {}, 'POST', 'DELETE', e, function(data){
+    console.log(data);
+    htmlLogoutCompleted(data);
+  });
+}
 
 // ========================================= //
 // ================ HTML =================== //
@@ -107,5 +114,11 @@ function htmlLoginCompleted(result){
 
     $('#username').text(result.username);
   }
+}
 
+function htmlLogoutCompleted(result){
+  if(result.status === 'ok'){
+    $('#username').text('');
+    $('.welcome').removeClass('hidden');
+  }
 }

@@ -20,6 +20,7 @@ app.get('/', home.index);
 
 app.post('/users', users.create);
 app.put('/login', users.login);
+app.delete('/logout', users.logout);
 
 // start server & socket.io
 var common = require('./sockets/common');
