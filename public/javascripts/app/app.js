@@ -15,7 +15,7 @@ function initialize(){
   $('.source').on('click', clickShowSource);
 
   $('#add-note').on('click', clickAddNote);
-  // $('#add-note-form')
+  $('#add-note-form button').on('click', clickSaveNote);
 }
 
 // =============== Events ================= //
@@ -113,7 +113,17 @@ function clickShowSource(e){
 
 function clickAddNote(){
   $('#add-note-reveal').foundation('reveal', 'open');
-  $('#add-note-title').focus();
+}
+
+function clickSaveNote(e){
+  var url = '/notes';
+  var data = $('#add-note-form').serialize();
+
+  $('#add-note-reveal').foundation('reveal', 'close');
+  sendAjaxRequest(url, data, 'POST', null, e, function(data){
+    console.log(data);
+    window.location.href = '/';
+  });
 }
 
 
@@ -161,6 +171,7 @@ function htmlLogoutCompleted(result){
   if(result.status === 'ok'){
     $('#username').text('');
     $('.welcome').removeClass('hidden');
+    window.location.href = '/';
   }
 }
 

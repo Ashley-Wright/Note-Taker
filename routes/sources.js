@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Source = mongoose.model('Source');
 var __ = require('lodash');
+var Note = mongoose.model('Note');
 
 exports.create = function(req,res){
   req.body.user = res.locals.user;
@@ -27,10 +28,14 @@ exports.create = function(req,res){
 }
 
 exports.show = function(req,res){
-  console.log(req.body);
   req.session.currentSource = {};
+  req.session.notes = [];
   Source.findById(req.params.id, function(err, source){
     req.session.currentSource = source;
-    res.send({});
+    Note.find({source: source.id}, function(err, notes){
+      req.session.notes = notes;
+      console.log(req.session.notes);
+      res.send({source:source, notes:notes});
+    });
   });
 }

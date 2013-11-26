@@ -11,6 +11,7 @@ var middleware = require('./lib/middleware');
 var home = require('./routes/home');
 var users = require('./routes/users');
 var sources = require('./routes/sources');
+var notes = require('./routes/notes');
 
 var app = express();
 var RedisStore = require('connect-redis')(express);
@@ -20,7 +21,7 @@ mongoose.connect('mongodb://localhost/note-taker');
 require('./config').initialize(app, RedisStore);
 
 // routes
-app.get('/', middleware.getSources, home.index);
+app.get('/', middleware.getSources, middleware.getNotes, home.index);
 
 app.post('/users', users.create);
 app.put('/login', users.login);
@@ -28,6 +29,8 @@ app.delete('/logout', users.logout);
 
 app.post('/sources', sources.create);
 app.get('/sources/:id', sources.show);
+
+app.post('/notes', notes.create);
 
 // start server & socket.io
 var common = require('./sockets/common');

@@ -1,5 +1,5 @@
 #source-show(class = currentSource ? '' : 'hidden')
-  .pure-g-r
+  .pure-g-r#source-show-heading
     .pure-u-1-2
       .pure-u-1-2
         if(currentSource)
@@ -10,4 +10,13 @@
       #source-menu
         a edit
         a delete
+  .pure-g-r
+    .pure-u-1
+      if(notes)
+        ul#source-show-notes
+          each note in notes
+            li(data-id= note._id)
+              .notes
+                h3= note.title
+                p= note.content
 
