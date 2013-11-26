@@ -1,7 +1,17 @@
 .pure-menu.pure-menu-open
   a(href='#').pure-menu-heading Sources
+  ul#source-list
+    //- Create a li for each source
+    if(sources)
+      each source in sources
+        //- Add an active class for the currently selected source
+        if(currentSource)
+          if(source.title === currentSource.title)
+            li.pure-menu-selected: a.source(data-id= source.id)= source.title
+          else
+            li: a.source(data-id= source.id)= source.title
+        else
+          li: a.source(data-id= source.id)= source.title
   ul
-    li
-      a Book1
     li
       a(data-reveal-id='add-source') Add a Source

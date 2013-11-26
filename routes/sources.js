@@ -25,3 +25,12 @@ exports.create = function(req,res){
     }
   });
 }
+
+exports.show = function(req,res){
+  console.log(req.body);
+  req.session.currentSource = {};
+  Source.findById(req.params.id, function(err, source){
+    req.session.currentSource = source;
+    res.send({});
+  });
+}

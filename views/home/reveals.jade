@@ -8,3 +8,17 @@
 
       button.pure-button.pure-button-primary(type="submit") Save
   a.close-reveal-modal &#215;
+
+.reveal-modal#add-note-reveal(data-reveal)
+  form.pure-form.pure-form-stacked#add-note-form
+    fieldset
+      legend Add a New Note
+
+      label(for="title") Title:
+      input#add-note-title(type="text")
+
+      label(for="content") Content:
+      textarea(name="content")#add-note-content
+
+      button.pure-button.pure-button-primary(type="submit") Save
+  a.close-reveal-modal &#215;

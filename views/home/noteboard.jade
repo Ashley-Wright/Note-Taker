@@ -1,0 +1,13 @@
+#source-show(class = currentSource ? '' : 'hidden')
+  .pure-g-r
+    .pure-u-1-2
+      .pure-u-1-2
+        if(currentSource)
+          h2= currentSource.title
+      .pure-u-1-2
+        button.pure-button#add-note Add Note
+    .pure-u-1-2
+      #source-menu
+        a edit
+        a delete
+

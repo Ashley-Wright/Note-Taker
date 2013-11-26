@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 // model definitions
 require('require-dir')('./models');
 
+// define middleware
+var middleware = require('./lib/middleware');
+
 // route definitions
 var home = require('./routes/home');
 var users = require('./routes/users');
@@ -17,13 +20,14 @@ mongoose.connect('mongodb://localhost/note-taker');
 require('./config').initialize(app, RedisStore);
 
 // routes
-app.get('/', home.index);
+app.get('/', middleware.getSources, home.index);
 
 app.post('/users', users.create);
 app.put('/login', users.login);
 app.delete('/logout', users.logout);
 
 app.post('/sources', sources.create);
+app.get('/sources/:id', sources.show);
 
 // start server & socket.io
 var common = require('./sockets/common');

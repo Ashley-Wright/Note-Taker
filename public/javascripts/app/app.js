@@ -12,6 +12,9 @@ function initialize(){
   $('#username').on('click', clickSignOut);
 
   $('#add-source-form').on('click', clickAddSource);
+  $('.source').on('click', clickShowSource);
+
+  $('#add-note').on('click', clickAddNote);
 }
 
 // =============== Events ================= //
@@ -94,6 +97,22 @@ function clickAddSource(e){
   }
 }
 
+function clickShowSource(e){
+  $('.pure-menu-selected').removeClass('pure-menu-selected');
+  $(this).parent().addClass('pure-menu-selected');
+
+  var id = $(this).attr('data-id');
+  var url = '/sources/' + id;
+
+  sendAjaxRequest(url, {}, 'GET', null, e, function(data){
+    console.log(data);
+    reloadPage();
+  });
+}
+
+function clickAddNote(){
+  $('#add-note-reveal').foundation('reveal', 'open');
+}
 
 
 // ========================================= //
@@ -132,6 +151,7 @@ function htmlLoginCompleted(result){
     $('.main').removeClass('hidden');
 
     $('#username').text(result.username);
+    window.location.href = '/';
   }
 }
 
@@ -143,5 +163,9 @@ function htmlLogoutCompleted(result){
 }
 
 function htmlAddSourceCompleted(result){
+  window.location.href = '/';
+}
 
+function reloadPage(){
+  window.location.href = '/';
 }
