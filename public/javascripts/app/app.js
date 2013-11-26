@@ -18,6 +18,9 @@ function initialize(){
   $('#add-note-form button').on('click', clickSaveNote);
 
   $('#source-show-notes').sortable({update: sortSourceNotes}).disableSelection();
+
+  $('#search').on('click', clickSearch);
+
 }
 
 // =============== Events ================= //
@@ -141,6 +144,16 @@ function sortSourceNotes(){
     console.log(data);
   });
 }
+
+function clickSearch(){
+  search = '"note1 text"';
+  var url = '/notes?search=' + search;
+  sendAjaxRequest(url, {}, 'GET', null, null, function(data){
+    console.log(data);
+    // htmlShowSearchResults(data.results);
+  });
+}
+
 
 // ========================================= //
 // ================ HTML =================== //

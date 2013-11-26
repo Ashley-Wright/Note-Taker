@@ -35,6 +35,8 @@ app.post('/notes', notes.create);
 
 app.put('/sourceNotes/sort', sourceNotes.sort);
 
+app.get('/notes', notes.search);
+
 // start server & socket.io
 var common = require('./sockets/common');
 var server = require('http').createServer(app);

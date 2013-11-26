@@ -7,3 +7,12 @@ exports.create = function(req,res){
     res.send(note);
   });
 };
+
+exports.search = function(req,res){
+  var search = req.query.search;
+  req.session.searchResults = {};
+  Note.textSearch(search, function(err, output){
+    req.session.searchResults = output.results;
+    res.send(output.results);
+  });
+}

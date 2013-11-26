@@ -34,11 +34,30 @@ exports.show = function(req,res){
     req.session.currentSource = source;
     Note.find({source: source.id}, function(err, notes){
       console.log('source.show');
-      console.log(notes);
-      notes = __.indexBy(notes, 'position');
-      req.session.notes = notes;
+      // filter out notes without a position property
+      var sortedNotes = [];
+      var unsortedNotes = [];
+      for(var i = 0; i < notes.length; i++){
+        var hasPosition = notes[i].position !== undefined;
+        if(hasPosition){
+          sortedNotes.push(notes[i]);
+        } else {
+          unsortedNotes.push(notes[i]);
+        }
+      }
+      // sort notes with position property by position
+      sortedNotes = __.indexBy(sortedNotes, 'position');
+      // indexBy returns an object, need to convert to array
+      sortedNotes = __.values(sortedNotes);
+
+      // add notes without position property to notes with position
+      for(i = 0; i < unsortedNotes.length; i++){
+        sortedNotes.push(unsortedNotes[i]);
+      }
+
+      req.session.notes = sortedNotes;
       console.log(req.session.notes);
-      res.send({source:source, notes:notes});
+      res.send({source:source, notes:sortedNotes});
     });
   });
 }
