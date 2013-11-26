@@ -15,6 +15,7 @@ function initialize(){
   $('.source').on('click', clickShowSource);
 
   $('#add-note').on('click', clickAddNote);
+  // $('#add-note-form')
 }
 
 // =============== Events ================= //
@@ -112,6 +113,7 @@ function clickShowSource(e){
 
 function clickAddNote(){
   $('#add-note-reveal').foundation('reveal', 'open');
+  $('#add-note-title').focus();
 }
 
 
