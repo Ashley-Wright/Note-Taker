@@ -16,6 +16,8 @@ function initialize(){
 
   $('#add-note').on('click', clickAddNote);
   $('#add-note-form button').on('click', clickSaveNote);
+
+  $('#source-show-notes').sortable({update: sortSourceNotes}).disableSelection();
 }
 
 // =============== Events ================= //
@@ -126,6 +128,19 @@ function clickSaveNote(e){
   });
 }
 
+function sortSourceNotes(){
+  var sortedNotes = [];
+  var notes = $(this).children();
+  for(var i = 0; i < notes.length; i++){
+    sortedNotes.push($(notes[i]).data('id'));
+  }
+
+  var url = 'sourceNotes/sort';
+  var data = {sortedNotes: sortedNotes};
+  sendAjaxRequest(url, data, 'POST', 'PUT', null, function(data){
+    console.log(data);
+  });
+}
 
 // ========================================= //
 // ================ HTML =================== //

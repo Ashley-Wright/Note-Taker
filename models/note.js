@@ -5,6 +5,7 @@ var Note = mongoose.Schema({
   title: {type: String, required: true},
   content: {type: String, required: true},
   source: {type: mongoose.Schema.Types.ObjectId, ref: 'Source'},
+  position: {type: Number},
   createdAt: {type: Date, default: Date.now}
 });
 

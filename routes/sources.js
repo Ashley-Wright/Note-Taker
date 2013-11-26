@@ -33,6 +33,9 @@ exports.show = function(req,res){
   Source.findById(req.params.id, function(err, source){
     req.session.currentSource = source;
     Note.find({source: source.id}, function(err, notes){
+      console.log('source.show');
+      console.log(notes);
+      notes = __.indexBy(notes, 'position');
       req.session.notes = notes;
       console.log(req.session.notes);
       res.send({source:source, notes:notes});
