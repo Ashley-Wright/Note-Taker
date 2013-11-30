@@ -13,6 +13,7 @@ var users = require('./routes/users');
 var sources = require('./routes/sources');
 var notes = require('./routes/notes');
 var sourceNotes = require('./routes/sourceNotes');
+var searchNotes = require('./routes/searchNotes');
 
 var app = express();
 var RedisStore = require('connect-redis')(express);
@@ -32,9 +33,9 @@ app.post('/sources', sources.create);
 app.get('/sources/:id', sources.show);
 
 app.post('/notes', notes.create);
-
 app.put('/sourceNotes/sort', sourceNotes.sort);
 
+app.get('/searchNotes', searchNotes.index);
 app.get('/notes', notes.search);
 
 // start server & socket.io

@@ -19,7 +19,10 @@ function initialize(){
 
   $('#source-show-notes').sortable({update: sortSourceNotes}).disableSelection();
 
-  $('#search').on('click', clickSearch);
+  $('.pure-menu-heading').on('click', clickAllSources);
+  $('#search-button').on('click', clickSearch);
+
+  // $('#search').on('click', clickSearch);
 
 }
 
@@ -145,15 +148,24 @@ function sortSourceNotes(){
   });
 }
 
-function clickSearch(){
-  search = '"note1 text"';
-  var url = '/notes?search=' + search;
-  sendAjaxRequest(url, {}, 'GET', null, null, function(data){
+function clickAllSources(e){
+  var url = '/searchNotes';
+
+  sendAjaxRequest(url, {}, 'GET', null, e, function(data){
     console.log(data);
-    // htmlShowSearchResults(data.results);
+    window.location.href = '/';
   });
 }
 
+function clickSearch(){
+  var search = $('#search-input').val();
+  var url = '/notes?search=' + search;
+  sendAjaxRequest(url, {}, 'GET', null, null, function(data){
+    console.log(data);
+    // debugger;
+    // htmlShowSearchResults(data);
+  });
+}
 
 // ========================================= //
 // ================ HTML =================== //
@@ -206,6 +218,13 @@ function htmlLogoutCompleted(result){
 function htmlAddSourceCompleted(result){
   window.location.href = '/';
 }
+
+// function htmlShowSearchResults(result){
+//   console.log(result);
+//   debugger;
+// }
+
+
 
 function reloadPage(){
   window.location.href = '/';
