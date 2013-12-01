@@ -162,6 +162,7 @@ function clickSearch(){
   var url = '/notes?search=' + search;
   sendAjaxRequest(url, {}, 'GET', null, null, function(data){
     console.log(data);
+    window.location.href = '/';
     // debugger;
     // htmlShowSearchResults(data);
   });
