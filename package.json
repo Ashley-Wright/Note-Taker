@@ -20,7 +20,8 @@
     "require-dir": "*",
     "bcrypt": "*",
     "mongoose-unique-validator": "*",
-    "mongoose-text-search": "*"
+    "mongoose-text-search": "*",
+    "pdfkit": "*"
   },
   "devDependencies": {
     "grunt": "*",

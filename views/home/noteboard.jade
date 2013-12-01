@@ -22,11 +22,14 @@
                 p= note.content
 #search-show(class = currentSource ? 'hidden' : '')
   .pure-g-r#search-show-heading
-    .pure-u-1-2
+    .pure-u-1-3
       h2 Search Results
-    .pure-u-1-2
+    .pure-u-1-3
       input#search-input(type="text")
       button.pure-button#search-button Search
+    .pure-u-1-3
+      form(action='/pdf', method='post')
+        button.pure-button#pdf-button(type='submit') Create PDF
   .pure-g-r
     .pure-u-1
       if(sortedSearchResults)
