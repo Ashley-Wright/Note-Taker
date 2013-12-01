@@ -5,6 +5,6 @@ header
       h1.subheader Note Taker
     .pure-u-1-6
       if(user)
-        a#username(href='#')= user.username
+        h2: a#username(href='#')= user.username
       else
         a#username(href='#')
