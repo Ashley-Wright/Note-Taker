@@ -21,8 +21,7 @@ function initialize(){
 
   $('.pure-menu-heading').on('click', clickAllSources);
   $('#search-button').on('click', clickSearch);
-
-  // $('#search').on('click', clickSearch);
+  $('.search-show-notes').sortable({update: sortSearchNotes}).disableSelection();
 
 }
 
@@ -165,6 +164,20 @@ function clickSearch(){
     window.location.href = '/';
     // debugger;
     // htmlShowSearchResults(data);
+  });
+}
+
+function sortSearchNotes(){
+  var sortedNotes = [];
+  var notes = $(this).children();
+  for(var i = 0; i < notes.length; i++){
+    sortedNotes.push($(notes[i]).data('id'));
+  }
+
+  var url = 'searchNotes/sort';
+  var data = {sortedNotes: sortedNotes};
+  sendAjaxRequest(url, data, 'POST', 'PUT', null, function(data){
+    console.log(data);
   });
 }
 

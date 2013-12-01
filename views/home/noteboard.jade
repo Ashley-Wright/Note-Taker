@@ -29,14 +29,21 @@
       button.pure-button#search-button Search
   .pure-g-r
     .pure-u-1
-      if(searchResults)
-        ul#search-show-notes
-          - for(var i=0; i<searchResults.length; i++)
-            li(data-id= searchResults[i].obj._id)
-              .notes
-                h3= searchResults[i].obj.title
-                p= searchResults[i].obj.content
-        if(searchResults.length === 0)
-          h3 No Search Results
-
-
+      if(sortedSearchResults)
+        if(sortedSearchResults.length !== 0)
+          ul.search-show-notes
+            each note in sortedSearchResults
+              li(data-id= note._id)
+                .notes
+                  h3= note.title
+                  p= note.content
+        else
+          if(searchResults)
+            ul.search-show-notes
+              - for(var i=0; i<searchResults.length; i++)
+                li(data-id= searchResults[i].obj._id)
+                  .notes
+                    h3= searchResults[i].obj.title
+                    p= searchResults[i].obj.content
+            if(searchResults.length === 0)
+              h3 No Search Results

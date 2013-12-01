@@ -37,6 +37,7 @@ app.put('/sourceNotes/sort', sourceNotes.sort);
 
 app.get('/searchNotes', searchNotes.index);
 app.get('/notes', notes.search);
+app.put('/searchNotes/sort', searchNotes.sort);
 
 // start server & socket.io
 var common = require('./sockets/common');
