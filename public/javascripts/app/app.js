@@ -158,6 +158,7 @@ function clickAllSources(e){
 
 function clickSearch(){
   var search = $('#search-input').val();
+  $('#search-term').text(search);
   var url = '/notes?search=' + search;
   sendAjaxRequest(url, {}, 'GET', null, null, function(data){
     console.log(data);

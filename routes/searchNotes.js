@@ -28,6 +28,9 @@ exports.sort = function(req,res){
 
 exports.pdf = function(req,res){
   doc = new PDFDocument();
+  doc.fontSize(20);
+  doc.text(req.session.searchTerm);
+  doc.moveDown(1);
 
   if(req.session.sortedSearchResults.length !== 0){
     for(var i = 0; i < req.session.sortedSearchResults.length; i++){

@@ -23,7 +23,10 @@
 #search-show(class = currentSource ? 'hidden' : '')
   .pure-g-r#search-show-heading
     .pure-u-1-3
-      h2 Search Results
+      if(searchTerm)
+        h2#search-term= searchTerm
+      else
+        h2#search-term
     .pure-u-1-3
       input#search-input(type="text")
       button.pure-button#search-button Search

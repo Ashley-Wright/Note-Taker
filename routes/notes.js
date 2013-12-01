@@ -12,6 +12,7 @@ exports.create = function(req,res){
 
 exports.search = function(req,res){
   var search = req.query.search;
+  req.session.searchTerm = search;
   req.session.searchResults = [];
   req.session.sortedSearchResults = [];
   // console.log('-----');
