@@ -1,13 +1,10 @@
 #source-show(class = currentSource ? '' : 'hidden')
   .pure-g-r#source-show-heading
-    .pure-u-1-2
-      .pure-u-1-2
-        if(currentSource)
-          h2= currentSource.title
-      .pure-u-1-2
-        button.pure-button#add-note Add Note
-        //- button.pure-button#search Search
-    .pure-u-1-2
+    .pure-u-4-5
+      if(currentSource)
+        h2= currentSource.title
+    .pure-u-1-5
+      button.pure-button#add-note Add Note
       //- #source-menu
       //-   a edit
       //-   a delete
@@ -22,15 +19,15 @@
                 p= note.content
 #search-show(class = currentSource ? 'hidden' : '')
   .pure-g-r#search-show-heading
-    .pure-u-1-3
+    .pure-u-2-5
       if(searchTerm)
         h2#search-term= searchTerm
       else
         h2#search-term
-    .pure-u-1-3
+    .pure-u-2-5
       input#search-input(type="text")
       button.pure-button#search-button Search
-    .pure-u-1-3
+    .pure-u-1-5
       form(action='/pdf', method='post')
         button.pure-button#pdf-button(type='submit') Create PDF
   .pure-g-r

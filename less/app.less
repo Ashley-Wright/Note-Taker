@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
+
 @base: #DFE2DF;
 @primary: #F9F994;
 
@@ -11,16 +13,24 @@ body{
 }
 
 .header{
-  background-color: @primary;
-  border-bottom: 2px solid darken(@primary, 5%);
-  border-top: 2px solid darken(@primary, 5%);
+  // background-color: @primary;
+  // border-bottom: 2px solid darken(@primary, 5%);
+  // border-top: 2px solid darken(@primary, 5%);
   h1{
-    color: darken(@base, 60%);
+    // color: darken(@base, 60%);
+    font-family: 'Roboto';
+    color: #43C922;
+    font-size: 40px;
+    margin: 0;
+    padding-top: 10px;
   }
   a{
     // padding-top: 40px;
-    color: #006887;
+    // color: #006887;
+    color: royalblue;
     text-decoration: none;
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -63,7 +73,7 @@ body{
 
 #source-show{
   #source-show-heading{
-    background-color: grey;
+    background-color: darkgrey;
     padding: 20px 0 20px 0;
     h2{
       padding-left: 20px;
@@ -104,7 +114,7 @@ body{
 
 #search-show{
   #search-show-heading{
-    background-color: grey;
+    background-color: darkgrey;
     padding: 20px 0 20px 0;
     h2{
       padding-left: 20px;
@@ -120,3 +130,10 @@ body{
   }
 }
 
+#search-input{
+  width: 65%;
+}
+
+#search-term{
+  margin: 0;
+}
