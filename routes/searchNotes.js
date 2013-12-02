@@ -37,9 +37,9 @@ exports.pdf = function(req,res){
       doc.fontSize(15);
       doc.text(req.session.sortedSearchResults[i].title);
       doc.moveDown(0.5);
-      doc.fontSize(12);
+      doc.fontSize(11);
       doc.text(req.session.sortedSearchResults[i].content);
-      doc.moveDown(2.0);
+      doc.moveDown(1.5);
     }
     doc.output(function(string){
       res.end(string);
@@ -50,9 +50,9 @@ exports.pdf = function(req,res){
       doc.fontSize(15);
       doc.text(req.session.searchResults[i].obj.title);
       doc.moveDown(0.5);
-      doc.fontSize(12);
+      doc.fontSize(11);
       doc.text(req.session.searchResults[i].obj.content);
-      doc.moveDown(2.0);
+      doc.moveDown(1.5);
     }
     doc.output(function(string){
       res.end(string);
