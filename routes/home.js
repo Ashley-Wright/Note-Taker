@@ -5,5 +5,5 @@ exports.index = function(req, res){
   } else {
     res.locals.currentSource = null;
   }
-  res.render('home/index', {title: 'Express', user: res.locals.user, sources: res.locals.sources, notes: req.session.notes, searchResults: req.session.searchResults, sortedSearchResults: req.session.sortedSearchResults, searchTerm: req.session.searchTerm});
+  res.render('home/index', {title: 'StudyBuddy', user: res.locals.user, sources: res.locals.sources, notes: req.session.notes, searchResults: req.session.searchResults, sortedSearchResults: req.session.sortedSearchResults, searchTerm: req.session.searchTerm});
 };
