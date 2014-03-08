@@ -44,5 +44,6 @@ app.post('/pdf', searchNotes.pdf);
 var common = require('./sockets/common');
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server, {log: true, 'log level': 2});
-server.listen(app.get('port'));
+server.listen(3000);
+
 io.of('/app').on('connection', common.connection);
