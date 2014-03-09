@@ -225,6 +225,7 @@ function htmlLoginCompleted(result){
 function htmlLogoutCompleted(result){
   if(result.status === 'ok'){
     $('#username').text('');
+    $('.main').addClass('hidden');
     $('.welcome').removeClass('hidden');
     window.location.href = '/';
   }
